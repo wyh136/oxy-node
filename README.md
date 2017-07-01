@@ -7,25 +7,27 @@ Automatic install script for Debian based systems Ubuntu, Mint, Debian.
 <b>Install (Mainnet)</b>
 ```
 $ cd $HOME
-$ wget -q -O OXYshell.bash "https://downloads.oxycoin.io/commander/mainnet/OXYshell.bash"
-$ chmod +x OXYshell.bash
+$ git clone https://github.com/Oxycoin/oxy-node.git
+$ cd oxy-node
+$ ./oxy_manager.bash install
 ```
 
-Then start the commander with this line and choose option 1:
+Then start the oxy-node with this line:
 ```
-$ ./OXYshell.bash
+$ ./oxy_manager.bash start
 ```
 
 <b>Install (Testnet)</b>
 ```
 $ cd $HOME
-$ wget -q -O OXYshell.bash "https://downloads.oxycoin.io/commander/testnet/OXYshell.bash"
-$ chmod +x OXYshell.bash
+$ git clone -b testnet https://github.com/Oxycoin/oxy-node.git
+$ cd oxy-node
+$ ./oxy_manager.bash install
 ```
 
-Then start the commander with this line and choose option 1:
+Then start the oxy-node with this line:
 ```
-$ ./OXYshell.bash
+$ ./oxy_manager.bash start
 ```
 
 ## Authors

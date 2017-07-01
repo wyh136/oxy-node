@@ -355,7 +355,10 @@ case $1 in
     "install_wallet")
       install_wallet
       sleep 1
-      reload
+      stop_oxy
+      sleep 1
+      start_oxy
+      show_blockHeight
     ;;
     "update_client")
       start_log

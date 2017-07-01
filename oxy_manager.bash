@@ -12,9 +12,9 @@ logfile=$root_path/logs/oxy_manager.log
 
 set_network() {
   if [ "$(grep "4c1170a3edb03f961e5e3f7cedcd25563f0a46ec4aa3342715d09c47b398ea19" $OXY_CONFIG )" ];then
-    NETWORK="main"
+    NETWORK="mainnet"
   elif [ "$(grep "0daee950841005a3f56f6588b4b084695f0d74aaa38b21edab73446064638552" $OXY_CONFIG )" ];then
-    NETWORK="test"
+    NETWORK="testnet"
   else
     NETWORK="unknown"
   fi
@@ -27,8 +27,7 @@ DB_PASSWD="$(grep "password" $OXY_CONFIG | cut -f 4 -d '"' | head -1)"
 NETWORK=""
 set_network
 GIT_ROOT="https://github.com/Oxycoin"
-GIT_ORIGIN="mainnet"
-BLOCKCHAIN_URL="https://downloads.oxycoin.io/snapshots/$GIT_ORIGIN/latest"
+BLOCKCHAIN_URL="https://downloads.oxycoin.io/snapshots/$NETWORK/latest"
 DB_SNAPSHOT="blockchain.db.gz"
 
 install_prereq() {
@@ -289,7 +288,7 @@ start_oxy() {
     echo -n "Starting OXY..."
     forever_exists=$(whereis forever | awk {'print $2'})
     if [[ ! -z $forever_exists ]]; then
-        $forever_exists start -o $root_path/logs/oxy-$GIT_ORIGIN.log -e $root_path/logs/oxy-$GIT_ORIGIN-err.log app.js &>> $logfile || \
+        $forever_exists start -o $root_path/logs/oxy-$NETWORK.log -e $root_path/logs/oxy-$NETWORK-err.log app.js &>> $logfile || \
         { echo -e "\nCould not start OXY." && exit 1; }
     fi
 
